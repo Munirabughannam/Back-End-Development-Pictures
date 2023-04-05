@@ -45,7 +45,16 @@ def test_pictures_json_is_not_empty(client):
 
 
 def test_post_picture(picture, client):
-    # create a brand new picture to upload
+    picture = {
+        "id": 200,
+        "pic_url": "http://dummyimage.com/230x100.png/dddddd/000000",
+        "event_country": "United States",
+        "event_state": "California",
+        "event_city": "Fremont",
+        "event_date": "11/2/2030"
+    }
+
+
     res = client.post("/picture", data=json.dumps(picture),
                       content_type="application/json")
     assert res.status_code == 201
